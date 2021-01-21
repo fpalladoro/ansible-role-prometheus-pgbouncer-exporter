@@ -1,5 +1,18 @@
 ---
 
+- name: ensure virtualenv is installed
+  pip:
+    name: virtualenv
+    executable: pip3
+  when: pgbouncer_exporter_use_virtualenv|bool
+
+- name: create virtualenv
+  shell: >
+    {{ pgbouncer_exporter_virtualenv_cmd }}
+    --python {{ pgbouncer_exporter_python_bin }}
+    {{ pgbouncer_exporter_virtualenv_dir }}
+  when: pgbouncer_exporter_use_virtualenv|bool
+
 - name: ensure packages are installed
   pip:
     name: prometheus-pgbouncer-exporter
