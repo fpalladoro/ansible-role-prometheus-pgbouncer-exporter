@@ -10,7 +10,7 @@ Group={{ pgbouncer_exporter_group }}
 {% for item in pgbouncer_exporter_env_variables %}
 Environment={{ item }}
 {% endfor %}
-ExecStart=/usr/local/bin/pgbouncer-exporter \
+ExecStart={{ pgbouncer_exporter_bin }} \
   --config {{ pgbouncer_exporter_cfg_dir }}/config.yml \
   --log-level {{ pgbouncer_exporter_log_level | upper }} \
   --log-file {{ pgbouncer_exporter_log_dir }}/pgbounce_exporter.log
