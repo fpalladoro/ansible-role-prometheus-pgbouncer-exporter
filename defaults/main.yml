@@ -5,8 +5,15 @@ pgbouncer_exporter_version: 2.0.1
 pgbouncer_exporter_host: 127.0.0.1
 pgbouncer_exporter_port: 9127
 
+pgbouncer_exporter_bin: /usr/local/bin/pgbouncer-exporter
 pgbouncer_exporter_cfg_dir: /etc/pgbouncer_exporter
 pgbouncer_exporter_log_dir: /var/log/pgbouncer_exporter
+
+pgbouncer_exporter_pip_bin: pip3
+pgbouncer_exporter_python_bin: /usr/bin/python3
+pgbouncer_exporter_use_virtualenv: false
+pgbouncer_exporter_virtualenv_cmd: /usr/local/bin/virtualenv
+pgbouncer_exporter_virtualenv_dir: /usr/local/virtualenvs/pgbouncer_exporter
 
 # Accepted values are: DEBUG, INFO, WARNING, ERROR, CRITICAL
 pgbouncer_exporter_log_level: INFO

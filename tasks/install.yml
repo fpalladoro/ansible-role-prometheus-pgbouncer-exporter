@@ -1,13 +1,26 @@
 ---
 
+- name: ensure virtualenv is installed
+  pip:
+    name: virtualenv
+    executable: pip3
+  when: pgbouncer_exporter_use_virtualenv|bool
+
+- name: create virtualenv
+  shell: >
+    {{ pgbouncer_exporter_virtualenv_cmd }}
+    --python {{ pgbouncer_exporter_python_bin }}
+    {{ pgbouncer_exporter_virtualenv_dir }}
+  when: pgbouncer_exporter_use_virtualenv|bool
+
 - name: ensure packages are installed
   pip:
     name: prometheus-pgbouncer-exporter
     version: "{{ pgbouncer_exporter_version }}"
-    executable: pip3
+    executable: "{{ pgbouncer_exporter_pip_bin }}"
     state: present
   vars:
-    ansible_python_interpreter: /usr/bin/python3
+    ansible_python_interpreter: "{{ pgbouncer_exporter_python_bin }}"
 
 - name: create system group
   group:
